@@ -15,8 +15,8 @@ class Index extends CI_Controller{
 
 		$data['sights'] = $this->Sight->getAll();
 
-		$this->load->view( 'indexview', $data );
-	
+		$this->load->view( 'allsightsview', $data );
+
 	}
-	
+
 }

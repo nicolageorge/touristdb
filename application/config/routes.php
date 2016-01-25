@@ -55,8 +55,13 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['sights/edit/(:num)'] = 'sights/editsight/id/$1';
 $route['sights/new'] = 'sights/addsight';
-$route['sights/'] = 'sights/all';
 
+$route['sights/'] = 'sights/all';
+$route['sights/page/'] = 'sights/all';
+$route['sights/page/(:num)'] = 'sights/index/id/$1';
+
+
+$route['journals'] = "blogs";
 
 $route['api/regions/(:num)'] = 'api/regions/id/$1'; // Example 4
 $route['api/regions/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/regions/id/$1/format/$3$4'; // Example 8

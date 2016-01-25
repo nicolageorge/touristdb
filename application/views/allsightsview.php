@@ -26,7 +26,7 @@
     <![endif]-->
 
     <script src="<?php echo base_url();?>public/js/lib/jquery.min.js"></script>
- 	  
+
   </head>
 
   <body>
@@ -69,6 +69,8 @@
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>Localitate</th>
+                  <th>Judet</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -78,12 +80,17 @@
                 <tr>
                   <td><?php echo $sight['id'];?></td>
                   <td><?php echo $sight['name'];?></td>
+                  <td><?php echo $sight['loc_name'];?></td>
+                  <td><?php echo $sight['region'];?></td>
                   <td><a href="<?php echo base_url();?>index.php/sights/edit/<?php echo $sight['id'];?>">Edit</a></td>
                   <td><a href="<?php echo base_url();?>index.php/sights/delete/<?php echo $sight['id'];?>">Delete</a></td>
                 </tr>
                 <?php } ?>
               </tbody>
             </table>
+            <div id="pagination">
+              <?php echo $this->pagination->create_links(); ?>
+            </div>
       </div>
     </div>
 
