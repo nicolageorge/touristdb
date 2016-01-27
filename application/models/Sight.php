@@ -56,8 +56,10 @@ class Sight extends CI_Model{
 		    `sights`.`subcat_id`,
 		    `sights_categories`.`id` as cat_id,
 		    `sights_categories`.`name` as cat_name,
-            `localities`.`name` as loc_name,
-            `localities`.`region_id` as region_id
+        `localities`.`name` as loc_name,
+        `localities`.`region_id` as region_id,
+        `localities`.`latitudine` as latitude,
+        `localities`.`longitudine`as longitude
 		    	FROM `sights`
 		    LEFT JOIN `sights_categories`
 		    	ON `sights`.`cat_id` = `sights_categories`.`id`
@@ -93,4 +95,10 @@ class Sight extends CI_Model{
 		$query = $this->db->query("SELECT * FROM sights_categories WHERE parent <> 0");
 		return $query->result_array();
 	}
+
+  public function deleteById( $id ){
+    //$query = $this->db->query( sprintf( "DELETE FROM sights WHERE id = %d", $id );
+    $this->db->where( 'id', $id );
+    $this->db->delete('sights');
+  }
 }

@@ -5,10 +5,10 @@ class sights extends CI_Controller{
 
 	public function __construct(){
 		parent::__construct();
-        $this->load->library('session');
-        $this->load->library('pagination');
+    $this->load->library('session');
+    $this->load->library('pagination');
 
-        $this->load->helper('form');
+    $this->load->helper('form');
 		$this->load->helper( 'url' );
 		$this->load->database();
 
@@ -132,5 +132,22 @@ class sights extends CI_Controller{
 
 		$this->load->view( 'editsightview', $data );
 	}
+
+  public function deletesight( $id ){
+    $data = array();
+    $sightToDelete = (int)$this->uri->segment(3);
+    $data["message"] = "Atractia a fost stearsa";
+
+
+    if( is_int( $sightToDelete ) ){
+      try{
+        $this->Sight->deleteById( $sightToDelete );
+      }catch(Exception $ex){
+        $data["message"] = "A aparut o eroare, detalii : " . $ex->getMessage();
+      }
+    }
+
+    $this->load->view( 'deletesightview', $data );
+  }
 
 }

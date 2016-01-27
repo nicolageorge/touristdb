@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['sights/edit/(:num)'] = 'sights/editsight/id/$1';
+$route['sights/delete/(:num)'] = 'sights/deletesight/id/$1';
 $route['sights/new'] = 'sights/addsight';
 
 $route['sights/'] = 'sights/all';

@@ -26,9 +26,7 @@
     <![endif]-->
 
     <script src="<?php echo base_url();?>public/js/lib/jquery.min.js"></script>
-
   </head>
-
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -40,12 +38,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Turistii veseli</a>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/sights/">Turistii veseli</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url(); ?>index.php/sights/">Dashboard</a></li>
-            <li><a href="<?php echo base_url(); ?>index.php/sights/new">Adauga</a></li>
+            <li><a href="<?php echo base_url(); ?>sights/">Dashboard</a></li>
+            <li><a href="<?php echo base_url(); ?>sights/new">Adauga</a></li>
           </ul>
         </div>
       </div>
@@ -55,47 +53,22 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="<?php echo base_url(); ?>index.php/sights/">Dashboard</a></li>
+            <li><a href="<?php echo base_url(); ?>sights/">Dashboard</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/sights/new">Adauga</a></li>
           </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
-          <h2 class="sub-header">Atractii</h2>
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Localitate</th>
-                  <th>Judet</th>
-                  <th>Vezi pe harta</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach( $sights as $sight ){ ?>
-                <tr>
-                  <td><?php echo $sight['id'];?></td>
-                  <td><?php echo $sight['name'];?></td>
-                  <td><?php echo $sight['loc_name'];?></td>
-                  <td><?php echo $sight['region'];?></td>
-                  <td><a href="https://www.google.ro/maps/@<?php echo $sight['latitude'];?>,<?php echo $sight['longitude'];?>,11z?hl=ro">Vezi pe harta</a></td>
-                  <td><a href="<?php echo base_url();?>index.php/sights/edit/<?php echo $sight['id'];?>">Edit</a></td>
-                  <td><a href="<?php echo base_url();?>index.php/sights/delete/<?php echo $sight['id'];?>" onclick="return confirm('Sunteti sigur ca doriti sa stergeti?')">Delete</a></td>
-                </tr>
-                <?php } ?>
-              </tbody>
-            </table>
-            <div id="pagination">
-              <?php echo $this->pagination->create_links(); ?>
-            </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <h1 class="page-header">Stergere atractie</h1>
+
+          <h2><?php echo $message;?></h2>
+
+          <h3>Apasati <a href="<?php echo base_url(); ?>sights/">aici</a> pentru a va intoarce la pagina de vizualizare</h3>
+
+        </div>
       </div>
     </div>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
