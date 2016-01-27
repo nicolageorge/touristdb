@@ -87,7 +87,7 @@
               <label for="sightCategoryInput">Categorie</label>
               <select class="form-control" id="sightCategoryInput" name="sightCategory">
                 <?php foreach( $sightCategories as $key=>$value ){ ?>
-                  <option value="<?php echo $value["id"];?>" ><?php echo $value["name"];?></option>
+                  <option value="<?php echo $value["id"];?>" <?php if( $sightCategory == $value["id"] ){ ?> SELECTED="SELECTED" <?php } ?> ><?php echo $value["name"];?></option>
                 <?php } ?>
               </select>
               <?php if( form_error('sightCategoryValidation') != "" ){ ;?>
@@ -99,7 +99,7 @@
               <label for="sightSubcategoryInput">Subcategorie</label>
               <select class="form-control" id="sightSubcategoryInput" name="sightSubcategory">
                 <?php foreach( $sightSubcategories as $key=>$value ){ ?>
-                  <option value="<?php echo $value["id"];?>" ><?php echo $value["name"];?></option>
+                  <option value="<?php echo $value["id"];?>"  <?php if( $sightSubcategory == $value["id"] ){ ?> SELECTED="SELECTED" <?php } ?> ><?php echo $value["name"];?></option>
                 <?php } ?>
               </select>
               <?php if( form_error('sightLocalityValidation') != "" ){ ;?>
@@ -111,7 +111,7 @@
               <label for="sightLocalityInput">Localitate</label>
               <select class="form-control" id="sightLocalityInput" name="sightLocality">
                 <?php foreach( $regionLocalities as $key=>$value ){ ?>
-                  <option value="<?php echo $value["id"];?>" ><?php echo $value["name"];?></option>
+                  <option value="<?php echo $value["id"];?>"  <?php if( $sightLocality == $value["id"] ){ ?> SELECTED="SELECTED" <?php } ?> ><?php echo $value["name"];?></option>
                 <?php } ?>
               </select>
               <?php if( form_error('sightLocalityValidation') != "" ){ ;?>
@@ -123,7 +123,7 @@
 
             <?php echo form_close(); ?>
             <?php echo $this->session->flashdata('msg'); ?>
-        
+
         </div>
       </div>
     </div>
