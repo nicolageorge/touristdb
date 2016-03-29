@@ -84,6 +84,38 @@
             </fieldset>
 
             <fieldset class="form-group">
+              <label for="sightPriceInput">Pret</label>
+              <textarea class="form-control" id="sightPriceInput" placeholder="Pret" name="sightPrice" rows="2"><?php echo $sightPrice;?></textarea>
+              <?php if( form_error('sightPriceValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightPriceValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="sightProgramInput">Program</label>
+              <textarea class="form-control" id="sightProgramInput" placeholder="Program" name="sightProgram" rows="2"><?php echo $sightProgram;?></textarea>
+              <?php if( form_error('sightProgramValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightProgramValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="sightDescriptionInput">Adresa</label>
+              <textarea class="form-control" id="sightAddressInput" placeholder="Adresa" name="sightAddress" rows="2"><?php echo $sightAddress;?></textarea>
+              <?php if( form_error('sightAddressValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightAddressValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="sightContactInput">Contact</label>
+              <textarea class="form-control" id="sightContactInput" placeholder="Contact" name="sightContact" rows="2"><?php echo $sightContact;?></textarea>
+              <?php if( form_error('sightContactValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightContactValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
+            <fieldset class="form-group">
               <label for="sightCategoryInput">Categorie</label>
               <select class="form-control" id="sightCategoryInput" name="sightCategory">
                 <?php foreach( $sightCategories as $key=>$value ){ ?>
@@ -116,6 +148,14 @@
               </select>
               <?php if( form_error('sightLocalityValidation') != "" ){ ;?>
                 <small class="text-muted alert"><?php echo form_error('sightLocalityValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
+			<fieldset class="form-group">
+              <label for="sightValidatedInput">Validat</label><?php var_dump( $sightValidated ); ?>
+              <input type="checkbox" id="sightValidatedInput" name="sightValidated" value="sightValidated" <?php if( $sightValidated == 1 ) echo "CHECKED" ?> >
+              <?php if( form_error('sightValidatedValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightValidatedValidation'); ?></small>
               <?php } ?>
             </fieldset>
 

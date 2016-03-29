@@ -71,6 +71,7 @@
                   <th>Name</th>
                   <th>Localitate</th>
                   <th>Judet</th>
+				  <th>Validat</th>
                   <th>Vezi pe harta</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -83,6 +84,13 @@
                   <td><?php echo $sight['name'];?></td>
                   <td><?php echo $sight['loc_name'];?></td>
                   <td><?php echo $sight['region'];?></td>
+				  <td>
+				  	<?php if( $sight['validated'] == 1) { ?>
+				  		<span aria-hidden="true" class="glyphicon glyphicon-ok green" style="color:green;"></span>
+					<?php }else{ ?>
+				  		<span aria-hidden="true" class="glyphicon glyphicon-remove red"></span>
+				  	<?php } ?>
+				  </td>
                   <td><a href="https://www.google.ro/maps/@<?php if( isset( $sight['latitude'] ) ) echo $sight['latitude'];?>,<?php if( isset( $sight['longitude'] ) )echo $sight['longitude'];?>,11z?hl=ro">Vezi pe harta</a></td>
                   <td><a href="<?php echo base_url();?>index.php/sights/edit/<?php echo $sight['id'];?>">Edit</a></td>
                   <td><a href="<?php echo base_url();?>index.php/sights/delete/<?php echo $sight['id'];?>" onclick="return confirm('Sunteti sigur ca doriti sa stergeti?')">Delete</a></td>
