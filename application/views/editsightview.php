@@ -60,7 +60,7 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h1 class="page-header">Adauga atractie</h1>
+          <h1 class="page-header">Modifica atractie</h1>
 
           <h2><?php echo $message;?></h2>
 
@@ -152,7 +152,7 @@
             </fieldset>
 
 			<fieldset class="form-group">
-              <label for="sightValidatedInput">Validat</label><?php var_dump( $sightValidated ); ?>
+              <label for="sightValidatedInput">Validat</label>
               <input type="checkbox" id="sightValidatedInput" name="sightValidated" value="sightValidated" <?php if( $sightValidated == 1 ) echo "CHECKED" ?> >
               <?php if( form_error('sightValidatedValidation') != "" ){ ;?>
                 <small class="text-muted alert"><?php echo form_error('sightValidatedValidation'); ?></small>
