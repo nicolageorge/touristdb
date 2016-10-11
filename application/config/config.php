@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://tourism.dev/';
+//$config['base_url'] = 'http://turism.incopac.ro/';
+$config['base_url'] = 'http://tourist.gnicola.ro.schlund.net/';
 
 
 /*

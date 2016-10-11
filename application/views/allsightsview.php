@@ -63,6 +63,31 @@
           <h1 class="page-header">Dashboard</h1>
           <h2 class="sub-header">Atractii</h2>
 
+          <div class="row">
+            <form method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <?php 
+              echo $sights_filter_form_elements; 
+              ?>
+              <select name="sightsRegionFilter">
+                <option value="">Toate Judetele</option>
+                <?php foreach( $regions as $key=>$val ) {
+                  echo "<option value='".$key."' ";
+                  if( $key == $filter_region_value ) echo " SELECTED ";
+                  echo ">". $val ."</option>"; 
+                }?>
+              </select>
+              &nbsp;&nbsp;&nbsp;
+              Validat <?php var_dump( $filter_validated_value );?>
+              <select name="sightsValidatedFilter">
+                <option value="">Toate</option>
+                <option value="1" <?php if( $filter_validated_value === "1" ) echo "SELECTED"; ?> >Da</option>
+                <option value="0" <?php if( $filter_validated_value === "0" ) echo "SELECTED"; ?> >Nu</option>
+              <select>
+              <input type="submit" value="cauta" name="submit" >
+            </form>
+          </div>
+
+          <div class="row">
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -71,8 +96,9 @@
                   <th>Name</th>
                   <th>Localitate</th>
                   <th>Judet</th>
-				  <th>Validat</th>
-                  <th>Vezi pe harta</th>
+			         	  <th>Validat</th>
+                  <th>Vezi coordonate harta</th>
+                  <th>Vezi Adresa pe harta</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -84,14 +110,15 @@
                   <td><?php echo $sight['name'];?></td>
                   <td><?php echo $sight['loc_name'];?></td>
                   <td><?php echo $sight['region'];?></td>
-				  <td>
-				  	<?php if( $sight['validated'] == 1) { ?>
-				  		<span aria-hidden="true" class="glyphicon glyphicon-ok green" style="color:green;"></span>
-					<?php }else{ ?>
-				  		<span aria-hidden="true" class="glyphicon glyphicon-remove red"></span>
-				  	<?php } ?>
-				  </td>
-                  <td><a href="https://www.google.ro/maps/@<?php if( isset( $sight['latitude'] ) ) echo $sight['latitude'];?>,<?php if( isset( $sight['longitude'] ) )echo $sight['longitude'];?>,11z?hl=ro">Vezi pe harta</a></td>
+				          <td>
+				  	        <?php if( $sight['validated'] === 1) { ?>
+				  		        <span aria-hidden="true" class="glyphicon glyphicon-ok green" style="color:green;"></span>
+					          <?php }else{ ?>
+				  		        <span aria-hidden="true" class="glyphicon glyphicon-remove red"></span>
+				  	        <?php } ?>
+				          </td> 
+                  <td><a target="_blank" href="https://www.google.ro/maps/@<?php if( isset( $sight['latitude'] ) ) echo $sight['latitude'];?>,<?php if( isset( $sight['longitude'] ) )echo $sight['longitude'];?>,11z?hl=ro">Vezi pe harta</a></td>
+                  <td><a target="_blank" href="http://maps.google.com/?q=<?php echo $sight['address'];?>" >Vezi Adresa pe harta</a>
                   <td><a href="<?php echo base_url();?>index.php/sights/edit/<?php echo $sight['id'];?>">Edit</a></td>
                   <td><a href="<?php echo base_url();?>index.php/sights/delete/<?php echo $sight['id'];?>" onclick="return confirm('Sunteti sigur ca doriti sa stergeti?')">Delete</a></td>
                 </tr>
@@ -102,6 +129,7 @@
               <?php echo $this->pagination->create_links(); ?>
             </div>
       </div>
+    </div>
     </div>
 
     <!-- Bootstrap core JavaScript

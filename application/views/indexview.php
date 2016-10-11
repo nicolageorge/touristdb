@@ -42,8 +42,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url(); ?>sights/">Dashboard</a></li>
-            <li><a href="<?php echo base_url(); ?>sights/new">Adauga</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/sights/">Dashboard</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/sights/new">Adauga</a></li>
           </ul>
         </div>
       </div>
@@ -53,19 +53,16 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="<?php echo base_url(); ?>sights/">Dashboard</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/sights/">Dashboard</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/sights/new">Adauga</a></li>
           </ul>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h1 class="page-header">Stergere atractie</h1>
+          <h1 class="page-header">Index ceva</h1>
 
-          <h2><?php echo $message;?></h2>
-
-          <h3>Apasati <a href="<?php echo base_url(); ?>index.php/sights/">aici</a> pentru a va intoarce la pagina de vizualizare</h3>
-
+      
         </div>
       </div>
     </div>

@@ -12,11 +12,11 @@ class Index extends CI_Controller{
 
 
 	public function index(){
+		$data = array();
+		// $data['sights'] = $this->Sight->getAllPaginated(0, 20);
 
-		$data['sights'] = $this->Sight->getAll();
-
-		$this->load->view( 'allsightsview', $data );
-
+		// $this->load->view( 'allsightsview', $data );
+		$this->load->view( 'indexview', $data );
 	}
 
 }

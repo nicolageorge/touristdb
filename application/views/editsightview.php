@@ -115,6 +115,24 @@
               <?php } ?>
             </fieldset>
 
+
+            <fieldset class="form-group">
+              <label for="sightLatitudeInput">Latitude</label>
+              <input type="text" class="form-control" id="sightLatitudeInput" placeholder="Latitudinea atractiei" name="sightLatitude" value="<?php echo $sightLatitude; ?>">
+              <?php if( form_error('sightLatitudeValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightLatitudeValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
+
+            <fieldset class="form-group">
+              <label for="sightLongitudeInput">Longitudine</label>
+              <input type="text" class="form-control" id="sightLongitudeInput" placeholder="Longitudinea atractiei" name="sightLongitude" value="<?php echo $sightLongitude; ?>">
+              <?php if( form_error('sightLongitudeValidation') != "" ){ ;?>
+                <small class="text-muted alert"><?php echo form_error('sightLongitudeValidation'); ?></small>
+              <?php } ?>
+            </fieldset>
+
             <fieldset class="form-group">
               <label for="sightCategoryInput">Categorie</label>
               <select class="form-control" id="sightCategoryInput" name="sightCategory">

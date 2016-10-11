@@ -28,6 +28,17 @@ class SightCategory extends CI_Model{
 			return "";
 	}
 
+	public function getAllParentCategories(){
+		$query = $this->db->query("SELECT * FROM sights_categories WHERE parent = 0");
+		return $query->result_array();
+	}
+
+	public function getAllSubcategories(){
+		$query = $this->db->query("SELECT * FROM sights_categories WHERE parent <> 0");
+		return $query->result_array();
+	}
+
+
 }
 
 

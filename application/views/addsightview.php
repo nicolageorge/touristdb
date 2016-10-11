@@ -151,19 +151,11 @@
               <?php } ?>
             </fieldset>
 
-			<fieldset class="form-group">
-              <label for="sightValidatedInput">Validat</label>
-              <input type="checkbox" id="sightValidatedInput" name="sightValidated" value="sightValidated" <?php if( $sightValidated == 1 ) echo "CHECKED" ?> >
-              <?php if( form_error('sightValidatedValidation') != "" ){ ;?>
-                <small class="text-muted alert"><?php echo form_error('sightValidatedValidation'); ?></small>
-              <?php } ?>
-            </fieldset>
-
             <button type="submit" name="sightAdd" value="sightAdd" class="btn btn-primary">Adauga</button>
 
             <?php echo form_close(); ?>
             <?php echo $this->session->flashdata('msg'); ?>
-
+        
         </div>
       </div>
     </div>

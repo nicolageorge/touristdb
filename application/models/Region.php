@@ -27,6 +27,15 @@ class Region extends CI_Model{
 		return $rez;
 	}
 
+	public function getAllNames(){
+		$query = $this->db->query("SELECT id, name FROM regions");
+		$rez = [];
+		foreach( $query->result_array() as $row ){
+			$rez[ $row['id'] ] = $row['name'];
+		}
+		return $rez;
+	}
+
 	public function getById( $id ){
 		$stmt  = sprintf("SELECT * FROM regions WHERE id = %d", $id);
 		$query = $this->db->query( $stmt );

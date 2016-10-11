@@ -45,17 +45,18 @@ class Sight extends CI_Model{
 		return $rez;
 	}
 
-  public function getCount(){
-    $query = $this->db->query( "SELECT count(id) as count FROM sights" );
-    return $query->row()->count;
-  }
+	public function getCount(){
+		$query = $this->db->query( "SELECT count(id) as count FROM sights" );
+		return $query->row()->count;
+	}
 
-	public function getAllPaginated($start, $pageSize){
+	public function getAllPaginated( $start = 0, $pageSize = 20, $filter = "" ){
     $theQuery = sprintf( "SELECT `sights`.`id`,
 			`sights`.`name`,
 			`sights`.`description`,
 		    `sights`.`subcat_id`,
 			`sights`.`validated`,
+			`sights`.`address`,
 		    `sights_categories`.`id` as cat_id,
 		    `sights_categories`.`name` as cat_name,
         `localities`.`name` as loc_name,
@@ -67,7 +68,8 @@ class Sight extends CI_Model{
 		    	ON `sights`.`cat_id` = `sights_categories`.`id`
         LEFT JOIN `localities`
           ON `sights`.`locality_id` = `localities`.`id`
-        LIMIT %d, %d", $start, $pageSize );
+        %s
+        LIMIT %d, %d",$filter, $start, $pageSize );
 
 		$query = $this->db->query( $theQuery );
 		$rez = [];
@@ -88,19 +90,35 @@ class Sight extends CI_Model{
 		return $query->result_array()[0];
 	}
 
-	public function getAllParentCategories(){
-		$query = $this->db->query("SELECT * FROM sights_categories WHERE parent = 0");
-		return $query->result_array();
+	public function deleteById( $id ){
+		//$query = $this->db->query( sprintf( "DELETE FROM sights WHERE id = %d", $id );
+		$this->db->where( 'id', $id );
+		$this->db->delete('sights');
 	}
 
-	public function getAllSubcategories(){
-		$query = $this->db->query("SELECT * FROM sights_categories WHERE parent <> 0");
-		return $query->result_array();
+	public function getCoordinates( $sight_id ){
+		$query = $this->db->query( sprintf( "SELECT latitude, longitude, locality_id from sights WHERE id = %d", $sight_id ) );
+		$rez = $query->result_array()[0];
+
+		if( $rez["latitude"] == 0 && $rez["longitude"] == 0 ){
+			$loc_query = $this->db->query( sprintf( "SELECT * from localities WHERE id = %d", $rez["locality_id"] ) );
+			$rez = $loc_query->result_array()[0];
+			return [ "latitude" => $rez["latitudine"], "longitude" => $rez["longitudine"] ];
+		}else{
+			return [ "latitude" => $rez["latitude"], "longitude" => $rez["longitude"] ];
+		}
 	}
 
-  public function deleteById( $id ){
-    //$query = $this->db->query( sprintf( "DELETE FROM sights WHERE id = %d", $id );
-    $this->db->where( 'id', $id );
-    $this->db->delete('sights');
-  }
+	public function getNearbyPlaces( $latitude, $longitude, $distance ){
+		$query = sprintf( "SELECT *,
+			3956 * 2 * ASIN( SQRT(
+				POWER( SIN( ( %s - abs( `localities`.`latitudine` ) ) * pi()/180 / 2 ), 2 ) +
+					COS( %s * pi() / 180 ) *
+					COS( abs( `localities`.`latitudine` ) *  pi() / 180 ) *
+				POWER( SIN( ( %f – abs( `localities`.`longitudine` ) ) *  pi() / 180 / 2), 2 )
+			) ) as distance FROM `localities` having distance < %d ORDER BY distance limit 10;", $latitude, $latitude, $longitude, $distance );
+
+		var_dump( $query );
+
+	}
 }
